@@ -1,0 +1,61 @@
+            <div class="no-bc clearfix" v-loading="companyVideoLoading">
+              <div
+                class="fl"
+                style="width:150px;"
+                v-for="(item,index) in companyVideo"
+                :key="index"
+              >
+                <videoImg
+                  :width="130"
+                  :height="80"
+                  :smallBtn="true"
+                  :videoInfo="item"
+                  :goDetail="true"
+                  @videoClick="videoClick"
+                ></videoImg>
+                <div class="clearfix" style="margin-top:10px;">
+                  <div
+                    @click="gotoCompanyDetail(item.company_id)"
+                    :title="item.company_name | handleCompanyName"
+                    class="fl companyName mainColor"
+                  >{{item.company_name | handleCompanyName}}</div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="toFace" style="padding:10px 0px;" v-loading="faceListLoading">
+                          <div class="face_content" style="padding:10px 0">
+                            <div class="demo-carousel clearfix">
+                              <div class="person_item fl" v-for="(item,index) in video" :key="index">
+                                <div class="thumb">
+                                  <img
+                                    style="cursor:pointer"
+                                    @click="goto_video(item.company_id)"
+                                    :src="item.user_avatar?item.user_avatar+'?x-oss-process=image/auto-orient,1':normal_img"
+                                  />
+                                </div>
+                                <div class="person_msg clearfix fl">
+                                  <div class="person_txt fl">
+                                    <p class="person_name">{{item.user_name | textFormat}}</p>
+                                    <p
+                                      class="address"
+                                    >{{item.city_name | textFormat}},{{item.country_name | textFormat}}</p>
+                                    <p
+                                      class="companyName mainColor"
+                                      @click="gotoCompanyDetail(item.company_id)"
+                                      :title="item.company_name | handleCompanyName"
+                                    >{{item.company_name | handleCompanyName}}</p>
+                                    <p class="oneVideo fl" @click="goto_video(item.company_id)">
+                                      <img src="../../assets/img/index/icon.png" />One to One Video
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>

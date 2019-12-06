@@ -248,13 +248,11 @@ bouncer([7, "ate", "", false, 9]);
 function destroyer(arr) {
     // 请把你的代码写在这里
     var newArr=arguments
-    for (let i = 0; i < ; i++) {
-        
+    for (let i = 1; i <newArr.length ; i++) {
+       arr.push(arr.filter(item=>item !==newArr[i]))
     }
-    
     return arr;
 }
 
-destroyer([1, 2, 3, 1, 2, 3], 2, 3);
-
-freeCodeCamp
+let a=destroyer([1, 2, 3, 1, 2, 3], 2, 3);
+console.log(a);

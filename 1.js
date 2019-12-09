@@ -247,7 +247,7 @@ bouncer([7, "ate", "", false, 9]);
  */
 function destroyer(arr) {
     // 请把你的代码写在这里
-    var newArr=arguments
+    let newArr=arguments
     for (let i = 1; i <newArr.length ; i++) {
        arr.push(arr.filter(item=>item !==newArr[i]))
     }
@@ -256,3 +256,170 @@ function destroyer(arr) {
 
 let a=destroyer([1, 2, 3, 1, 2, 3], 2, 3);
 console.log(a);
+
+
+/*
+高阶函数
+使用箭头函数的语法来计算squaredIntegers数组里正整数的平方（分数不是整数）
+ */
+const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34];
+const squareList = (arr) => {
+    // 在这行以下修改代码
+    const squaredIntegers = arr.filter(item=>{
+        return Number.isInteger(item)
+    }).map(item=>Math.pow(item,2))
+    // 在这行以上修改代码
+    return squaredIntegers;
+};
+// 测试你的代码
+const squaredIntegers = squareList(realNumberArray);
+console.log(squaredIntegers);
+
+/*
+给函数increment加上默认参数，使得在value没有被赋值的时候，默认给number加1
+ */
+const increment = (function() {
+    "use strict";
+    return function increment(number, value=1) {
+        return number + value;
+    };
+})();
+console.log(increment(5, 2)); // 返回 7
+console.log(increment(5)); // 返回 6
+
+
+/*
+修改sum函数，来让它使用rest操作符，并且它可以在有任何数量的参数时以相同的形式工作。
+ */
+const sum = (function() {
+    "use strict";
+    return function sum(...args) {
+        return args.reduce((a, b) => a + b, 0);
+    };
+})();
+console.log(sum(1, 2, 3)); // 6
+
+/*
+使用展开操作符将arr1中的内容都赋值到arr2中去。
+ */
+const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY'];
+let arr2;
+(function() {
+    "use strict";
+    arr2 = [...arr1]; // 改变这一行
+})();
+console.log(arr2);
+
+/*
+使用解构语法去得到输入的str字符串的长度，并将长度赋值给len。
+ */
+function getLength(str) {
+    "use strict";
+
+    // 在这行以下修改代码
+    const {length:len} = str; // change this
+    // 在这行以上修改代码
+
+    return len; // 你必须在这行将 length 赋值给 len
+
+}
+
+console.log(getLength('FreeCodeCamp'));
+
+
+
+/*
+使用解构赋值来得到forecast.tomorrow的max，并将其赋值给maxOfTomorrow。
+ */
+const LOCAL_FORECAST = {
+    today: { min: 72, max: 83 },
+    tomorrow: { min: 73.3, max: 84.6 }
+};
+
+function getMaxOfTmrw(forecast) {
+    "use strict";
+    // 在这行以下修改代码
+    const {tomorrow:{max:maxOfTomorrow}} = forecast; // 改变这一行
+    // 在这行以上修改代码
+    return maxOfTomorrow;
+}
+
+console.log(getMaxOfTmrw(LOCAL_FORECAST)); // 应该为 84.6
+/*
+使用数组解构来交换变量a与b的值。使a、b能分别获得对方的值。
+ */
+let a = 8, b = 6;
+(() => {
+    "use strict";
+    // 在这行以下修改代码
+    [a,b]=[b,a]
+    // 在这行以上修改代码
+})();
+console.log(a); // 应该等于 6
+console.log(b); // 应该等于 8
+/*
+使用解构赋值以及rest操作符来进行一个Array.prototype.slice相同的操作。使得arr是原数组source除开前两个元素的子数组。
+ */
+const source = [1,2,3,4,5,6,7,8,9,10];
+function removeFirstTwo(list) {
+    "use strict";
+    // 在这行以下修改代码
+    const [a,b,...arr]=list // change this
+    // 在这行以上修改代码
+    return arr;
+}
+const arr = removeFirstTwo(source);
+console.log(arr); // 应该为 [3,4,5,6,7,8,9,10]
+console.log(source); // 应该为 [1,2,3,4,5,6,7,8,9,10];\
+
+/*
+对half的参数进行解构赋值，使得仅仅将max与min的值传进函数。
+ */
+const stats = {
+    max: 56.78,
+    standard_deviation: 4.34,
+    median: 34.54,
+    mode: 23.87,
+    min: -0.75,
+    average: 35.85
+};
+const half = (function() {
+    "use strict"; // 不要改变这行
+
+    // 在这行以下修改代码
+    return function half({max,min}) {
+        // 请在函数参数中使用解构赋值
+        return (max + min) / 2.0;
+    };
+    // 在这行以上修改代码
+
+})();
+console.log(stats); // 应该为 object
+console.log(half(stats)); // 应该为 28.015
+
+/*
+使用模板字符串的反引号的语法来展示result对象的failure数组内的每个条目。每个条目应该括在带有text-warning类属性的li标签中，并赋值给resultDisplayArray
+ */
+const result = {
+    success: ["max-length", "no-amd", "prefer-arrow-functions"],
+    failure: ["no-var", "var-on-top", "linebreak"],
+    skipped: ["id-blacklist", "no-dup-keys"]
+};
+function makeList(arr) {
+    "use strict";
+
+    // 在这行以下修改代码
+    const resultDisplayArray = `<li class="text-warning">no-var</li>
+<li class="text-warning">var-on-top</li>
+<li class="text-warning">linebreak</li>`;
+    // 在这行以上修改代码
+
+    return resultDisplayArray;
+}
+/**
+ * makeList(result.failure) 应该返回：
+ * [ <li class="text-warning">no-var</li>,
+ *   <li class="text-warning">var-on-top</li>,
+ *   <li class="text-warning">linebreak</li> ]
+ **/
+const resultDisplayArray = makeList(result.failure);

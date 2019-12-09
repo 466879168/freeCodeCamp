@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<button id="btn">点击清除</button>
+
+<script>
+  var num = 5
+  document.getElementById("btn").addEventListener("click", function () {
+    if (num > 0) {
+      var aaa = setInterval(function () {
+        num--
+        //console.log(num);
+        console.log(aaa);
+      }, 1000)
+    } else {
+      num = 5
+      //console.log(aaa);
+      clearInterval(aaa)
+    }
+  })
+</script>
+</body>
+</html>

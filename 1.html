@@ -8,20 +8,12 @@
 <button id="btn">点击清除</button>
 
 <script>
-  var num = 5
-  document.getElementById("btn").addEventListener("click", function () {
-    if (num > 0) {
-      var aaa = setInterval(function () {
-        num--
-        //console.log(num);
-        console.log(aaa);
-      }, 1000)
-    } else {
-      num = 5
-      //console.log(aaa);
-      clearInterval(aaa)
-    }
-  })
+let arr=null
+  if(arr){
+    console.log(1)
+  }else{
+    console.log(2)
+  }
 </script>
 </body>
 </html>

@@ -409,11 +409,11 @@ function makeList(arr) {
     "use strict";
 
     // 在这行以下修改代码
-    const resultDisplayArray = `<li class="text-warning">no-var</li>
-<li class="text-warning">var-on-top</li>
-<li class="text-warning">linebreak</li>`;
+    const resultDisplayArray = arr.map(item=>{
+    return `<li class="text-warning">${item}</li>`
+    });
     // 在这行以上修改代码
-
+    console.log(resultDisplayArray);
     return resultDisplayArray;
 }
 /**
@@ -423,3 +423,286 @@ function makeList(arr) {
  *   <li class="text-warning">linebreak</li> ]
  **/
 const resultDisplayArray = makeList(result.failure);
+
+
+/*
+请使用简单属性对象的语法来创建并返回一个Person对象
+ */
+const createPerson = (name, age, gender) => {
+    "use strict";
+    // 在这行以下修改代码
+    return {
+        name,
+        age,
+        gender
+    };
+    // 在这行以上修改代码
+};
+console.log(createPerson("Zodiac Hasbro", 56, "male")); // 返回正确的对象
+
+
+/*
+
+使用以上这种简短的语法，重构在bicycle对象中的setGear函数
+ */
+// 在这行以下修改代码
+const bicycle = {
+    gear: 2,
+    setGear(newGear) {
+        "use strict";
+        this.gear = newGear;
+    }
+};
+// 在这行以上修改代码
+bicycle.setGear(3);
+console.log(bicycle.gear);
+/*
+
+使用class关键字，并写出正确的构造函数，来创建Vegetable这个类：
+
+Vegetable这个类可以创建 vegetable 对象，这个对象拥有一个在构造函数中赋值的name属性
+ */
+function makeClass() {
+    "use strict";
+    /* 在这行下面改写代码 */
+    class Vegetable{
+        constructor(name) {
+            this.name=name
+        }
+    }
+    /* 在这行上面改写代码 */
+    return Vegetable;
+}
+const Vegetable = makeClass();
+const carrot = new Vegetable('carrot');
+console.log(carrot.name); // => 应该显示 'carrot'
+
+
+/**
+ * 使用class关键字来创建Thermostat类，它的构造函数应该可以接收华氏温度作为参数。
+ 在类中创建 getter和setter，将温度转换成摄氏温度。
+ 温度转换的公式是C = 5/9 * (F - 32)以及F = C * 9.0 / 5 + 32，F 代表华氏温度，C 代表摄氏温度。
+ 请注意
+ 当你实现这个作业的时候，你应当在类中使用一个温度标准，无论是华氏温度还是摄氏温度。
+ 是时候展现 getter 和 setter 的威力了——无论你的 API 内部使用的是哪种温度标准，用户都能得到正确的结果。
+ 或者说，你从用户需求中抽象出了实现细节。
+ */
+function makeClass() {
+    "use strict";
+    /* 请把你的代码写在这条注释以下 */
+    class Thermostat{
+        constructor(farenheit) {
+            this.farenheit=farenheit
+        }
+        get temperature(){
+            return 5/9*(this.farenheit-32)
+        }
+        set temperature(celsius){
+            this.farenheit = celsius * 9.0 / 5 + 32
+        }
+    }
+    /* 请把你的代码写在这条注释以上 */
+    return Thermostat;
+}
+const Thermostat = makeClass();
+const thermos = new Thermostat(76); // 使用华氏温度来初始化
+let temp = thermos.temperature; // 摄氏温度24.44度
+thermos.temperature = 26;
+temp = thermos.temperature; // 摄氏温度26度
+
+/**
+ * 添加正确的import语句，允许当前文件使用capitalizeString函数。这个函数是在与当前文件同一目录下的"string_functions"文件中声明的。
+ */
+"use strict";
+import {capitalizeString} from "string_functions";
+ capitalizeString("hello!");
+
+
+
+
+
+
+//prop="company_status"
+
+
+/**
+ * 如果一个字符串（第一个参数）的长度大于给出的值（第二个参数），则截断它并在其后加上 ... 。返回被截断的字符串
+ */
+function truncateString(str, num) {
+    // Clear out that junk in your trunk
+    if(str.length>num){
+        str=str.substr(0,num)+"..."
+    }
+    return str;
+}
+
+truncateString("A-tisket a-tasket A green and yellow basket", 8);
+
+
+/**
+ * 请写一个函数来检查一个数组（第一个参数）中的元素，并返回数组中第一个通过校验测试（第二个参数，一个接受一个参数并返回一个布尔值的函数）的元素。如果没有元素通过测试，则返回 undefined。
+ */
+function findElement(arr, func) {
+    let num = 0;
+    for(let i=0;i<arr.length;i++){
+        num=arr[i]
+        if(func(num)){
+            return num
+        }
+    }
+    return undefined;
+  }
+  
+  findElement([1, 2, 3, 4], num => num % 2 === 0);
+
+/**
+ * 检查一个值是否是原始的布尔值（boolean）类型。返回 true 或者 false。
+ */
+function booWho(bool) {
+    // What is the new fad diet for ghost developers? The Boolean.
+    let boo=null
+    if(typeof bool ==="boolean"){
+        boo=true
+    }
+    else{
+        boo=false
+    }
+    return boo;
+  }
+  
+  booWho(null);
+
+
+/**
+ * 将给出的字符串中所有单词的第一个字母变成大写，并返回得到的字符串。请确保其余的字母是小写的。
+
+出于练习的目的，“ the ”“ of ”等虚词的首字母也要大写。
+ */
+function titleCase(str) {
+    
+    return str;
+  }
+  
+  titleCase("I'm a little tea pot");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

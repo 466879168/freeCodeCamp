@@ -3,17 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
+  <style>
+    .wrap{
+      width: 500px;
+      height: 150px;
+      margin: 150px auto;
+      border: 10px solid red;
+      background: lightcoral;
+      display: flex;
+      justify-content: space-evenly ;
+      align-items: center;
+    }
+    div{
+      width: 68px;
+      height: 48px;
+      background: lightblue;
+      border:1px solid #000 ;
+    }
+  </style>
 </head>
 <body>
-<button id="btn">点击清除</button>
-
-<script>
-let arr=null
-  if(arr){
-    console.log(1)
-  }else{
-    console.log(2)
-  }
-</script>
+<div class="wrap">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
 </body>
 </html>

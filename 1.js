@@ -1879,5 +1879,95 @@ function myReplace(str, before, after) {
 
 myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
 
+/**
+ * 在这道题目中，我们需要写一个函数，为 DNA 中的碱基配对。这个函数只接收一个表示碱基的字符串为参数，最后返回完成配对的二维数组。
+
+ 碱基对 由一对碱基组成。碱基有四种，分别为 A（腺嘌呤）、T（胸腺嘧啶）、G（鸟嘌呤）和 C（胞嘧啶）。配对原则是：A 与 T 配对，C 与 G 配对。我们需要根据这个原则对传入的所有碱基进行配对。
+
+ 对于每个传入的碱基，我们应采用数组的形式展示配对结果。其中，传入的碱基需要作为数组的第一个元素出现。最终返回的数组中应当包含参数中每一个碱基的配对结果。
+
+ 比如，传入的参数是 GCG，那么函数的返回值应为 [["G", "C"], ["C","G"],["G", "C"]]
+ */
+
+function pairElement(str) {
+    let obj={
+        A:"T",
+        C:"G",
+        T:'A',
+        G:"C"
+    }
+
+    let arr=[]
+    arr=Array.from(str)
+    let newArr=arr.map(item=>{
+        return [item,obj[item]]
+    })
 
 
+    return newArr;
+}
+
+pairElement("GCG");
+
+
+/**
+ * 在这道题目中，我们需要写一个函数，找到传入的字符串里缺失的字母并返回它。
+
+ 判断缺失的依据是字母顺序，比如 abcdfg 中缺失了 e。而 abcdef 中就没有字母缺失，此时我们需要返回undefined
+ */
+function fearNotLetter(str) {
+    return str;
+}
+
+fearNotLetter("abce");
+
+/**
+ * 在这道题目中，我们需要写一个函数，它接收两个或多个数组为参数。我们需要对这些数组中所有元素进行去除重复元素的处理，并以数组的形式返回去重结果。
+
+ 需要注意的是，结果数组中的元素顺序必须与其传入的顺序保持一致
+ */
+function uniteUnique(arr) {
+    let args=[...arguments]
+    var result=[]
+    for(var i=0;i<args.length;i++){
+        for(var j=0;j<args[i].length;j++){
+            if(!result.includes(args[i][j])){
+
+            }
+        }
+    }
+    return arr;
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+
+/**
+ * 在这道题目中，我们需要写一个转换 HTML entity 的函数。需要转换的 HTML entity 有&、<、>、"（双引号）和'（单引号
+ */
+function convertHTML(str) {
+    var temp = str.split('');
+    for (var i = 0; i < temp.length; i++) {
+      switch (temp[i]) {
+        case '<':
+          temp[i] = '&lt;';
+          break;
+        case '&':
+          temp[i] = '&amp;';
+          break;
+        case '>':
+          temp[i] = '&gt;';
+          break;
+        case '"':
+          temp[i] = '&quot;';
+          break;
+        case "'":
+          temp[i] = "&apos;";
+          break;
+      }
+    }
+
+    temp = temp.join('');
+    return temp;
+  }
+  convertHTML("Dolce & Gabbana");

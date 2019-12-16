@@ -1971,3 +1971,77 @@ function convertHTML(str) {
     return temp;
   }
   convertHTML("Dolce & Gabbana");
+
+
+/**
+ * 在这道题目中，我们需要写一个函数，参数为一个正整数num。它的作用是计算斐波那契数列中，小于或等于num的奇数之和。
+ 斐波那契数列中，第一和第二个数字都是 1，后面的每个数字由之前两数相加得出。斐波那契数列的前六个数字分别为：1、1、2、3、5、8。
+ 比如，sumFibs(10)应该返回10。因为斐波那契数列中，比10小的数字只有 1、1、3、5
+ */
+function sumFibs(num) {
+    var prevNumber = 0;
+    var currNumber = 1;
+    var result = 0;
+    while (currNumber <= num) {
+        if (currNumber % 2 !== 0) {
+            result += currNumber;
+        }
+
+        currNumber += prevNumber;
+        prevNumber = currNumber - prevNumber;
+    }
+
+    return result;
+}
+
+sumFibs(4);
+
+/**
+ * 在这道题目中，我们需要写一个函数，它接收一个数字参数num，返回值为不大于这个数字的所有质数之和。
+
+ 质数是大于 1 且仅可以被 1 和自己整除的数。比如，2 就是一个质数，因为它只可以被 1 和 2（它本身）整除。
+
+ 注意，传入函数的num不一定是质数
+ */
+function sumPrimes(num) {
+    if(num){
+
+    }
+    return num;
+}
+
+sumPrimes(10);
+
+/**
+ * 在这道题目中，我们需要写一个函数，它接收一个包含两个数字的数组参数arr，它的返回值为这两个数字范围内所有数字（包含这两个数字）的最小公倍数。
+
+ 注意，较小数不一定总是出现在数组的第一个元素。
+
+ 比如，传入[1, 3]，那么函数的返回结果应为 1、2、3 的最小公倍数，即为 6
+ */
+function smallestCommons(arr) {
+    var range = [];
+    for (var i = Math.max(arr[0], arr[1]); i >= Math.min(arr[0], arr[1]); i--) {
+        range.push(i);
+    }
+
+    // can use reduce() in place of this block
+    var lcm = range[0];
+    for (i = 1; i < range.length; i++) {
+        var GCD = gcd(lcm, range[i]);
+        lcm = (lcm * range[i]) / GCD;
+    }
+    return lcm;
+
+    function gcd(x, y) {    // Implements the Euclidean Algorithm
+        if (y === 0)
+            return x;
+        else
+            return gcd(y, x%y);
+    }
+}
+
+// test here
+smallestCommons([1,5]);
+
+

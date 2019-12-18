@@ -1,108 +1,87 @@
 <template>
-  <div class="check">
-    <el-form :model="form" :inline="true">
-      <el-form-item label="Company Name:">
-        <el-autocomplete
-                v-model="name"
-                :fetch-suggestions="querySearchAsync"
-                placeholder="请输入5个以上字符"
-                @select="handleSelect"
-                :trigger-on-focus="false"
-                style="width: 300px"
-        ></el-autocomplete>
-        <!--          <el-input v-model="name" autocomplete="off" style="width: 300px" placeholder="请输入5个以上字符"></el-input>-->
-        <el-button :disabled="isdisable" @click="query">check</el-button>
-      </el-form-item>
-    </el-form>
-    <div slot="footer" class="dialog-footer">
-      <el-button @click="cancelBtn">Cancel</el-button>
-      <el-button type="primary" @click="save" :disabled="isdisable">Save</el-button>
-    </div>
+  <div class="contacts-group">
+    <!--    <div :gutter="20" class="contacts-top">-->
+    <!--      <el-col :span="8">-->
+    <!--        <el-input v-model="input" placeholder="联系人组"></el-input>-->
+    <!--      </el-col>-->
+    <!--      <el-col :span="4" :offset="12">-->
+    <!--        <el-button type="primary" class="fr" @click="search">查询</el-button>-->
+    <!--      </el-col>-->
+
+    <!--    </div>-->
+    <!--    <div class="contacts-table">-->
+    <!--      <div class="contacts-add">-->
+    <!--        <el-button type="primary">添加</el-button>-->
+    <!--      </div>-->
+    <!--      <el-table-->
+    <!--        :data="tableData"-->
+    <!--        border-->
+    <!--        style="width: 100%">-->
+    <!--        <el-table-column-->
+    <!--          fixed-->
+    <!--          prop="date"-->
+    <!--          label="联系人组">-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column-->
+    <!--          prop="name"-->
+    <!--          label="创建人"-->
+    <!--          width="150">-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column-->
+    <!--          prop="province"-->
+    <!--          label="联系人数量"-->
+    <!--          width="150">-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column-->
+    <!--          prop="city"-->
+    <!--          label="创建时间"-->
+    <!--          width="150">-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column-->
+    <!--          prop="address"-->
+    <!--          label="最后修改时间"-->
+    <!--          width="150">-->
+    <!--        </el-table-column>-->
+    <!--        <el-table-column-->
+    <!--          fixed="right"-->
+    <!--          width="150">-->
+    <!--          <template slot-scope="scope">-->
+    <!--            <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>-->
+    <!--            <el-button type="text" size="small">删除</el-button>-->
+    <!--          </template>-->
+    <!--        </el-table-column>-->
+    <!--      </el-table>-->
+    <!--    </div>-->
+    <!--    <div class="footer-content">-->
+    <!--      <el-pagination-->
+    <!--        layout="prev, pager, next"-->
+    <!--        :total="50">-->
+    <!--      </el-pagination>-->
+    <!--    </div>-->
+    <div class="contacts-top"></div>
+    <div class="contacts-center"></div>
+    <div class="contacts-footer"></div>
   </div>
 </template>
 
 <script>
-  import {queryCompanyName} from "../../api/table"
-
   export default {
-    name: "checkName",
+    name: 'ContactsGroup',
     data() {
       return {
-        form: {},
-        timeout:  null,
-        companyList:{},
-        isShow:false
-      }
-    },
-    computed: {
-      name: {
-        get() {
-          return this.$store.state.settings.checkCrmName
-        },
-        set(val) {
-          this.$store.commit("settings/changeCheckCrmName", val)
-        }
-      },
-      isdisable() {
-        if (this.name === "") {
-          return true
-        } else {
-          if (this.name.length > 5) {
-            return false
-          } else {
-            return true
-          }
-        }
+        input: "",
+        tableData:[]
       }
     },
     methods: {
-      save() {
-        if(this.companyList.company_name!== "" &&this.companyList.oss_name!==""){
-          this.$alert("该公司资源已被占用",{
-            confirmButtonText: '确定'
-          })
-        }else{
-          this.$bus.$emit("changeBtn", this.name)
-          this.$emit("changeBtn")
-        }
+      search() {
 
-      },
-      cancelBtn() {
-        this.$emit("cancelBtn")
-      },
-      query() {
-        this.isShow=true
-      },
-      querySearchAsync(queryString, cb) {
-        queryCompanyName({
-          company_name: this.name
-        }).then(res => {
-          for (let i = 0; i <res.data.length ; i++) {
-            res.data[i].value=res.data[i].company_name
-          }
-          clearTimeout(this.timeout);
-          this.timeout = setTimeout(() => {
-            cb(res.data);
-          }, 1000 * Math.random());
-        })
-      },
-      handleSelect(item) {
-        this.companyList=item
-        console.log(this.companyList);
       }
-    },
-    destroyed() {
-      this.isShow=false
     }
+
   }
 </script>
 
 <style scoped>
-  .dialog-footer {
-    text-align: right;
-    margin-top: 10px;
-  }
-  ul,li{
-    list-style: none;
-  }
+
 </style>
